@@ -46,7 +46,7 @@ function s()
 function g($l)
 {
     if (!isset($_REQUEST['next'])) {
-        echo "<meta http-equiv='refresh' content='0 28.php'/>";
+        echo "<meta http-equiv='refresh' content='0 chat.php'/>";
         exit($l);
     }
     echo "<meta http-equiv='refresh' content='0 " . htmlspecialchars($_REQUEST['next']) . "'/>";
@@ -99,7 +99,7 @@ if (chkx() == "1") {
         }
     }
     g($l);
-} elseif (isset($_GET['next']) && ($_GET['next'] == "28.php?b=d" || $_GET['next'] == "28.php?b=b")) {
+} elseif (isset($_GET['next']) && preg_match('/^(?:28|chat)\\.php\\?b=(?:d|b)$/', $_GET['next'])) {
     exit("<meta http-equiv='refresh' content='4'><mark>Solve captcha, should auto refresh. Maybe resend message? ~ " . date("H:i:s") . "</mark>");
 } else {
     if (isset($_REQUEST['id'])) {
@@ -176,7 +176,7 @@ if ($live != "old") {
 $nameValue = isset($_POST['name']) ? $_POST['name'] : (isset($_COOKIE['name']) ? $_COOKIE['name'] : '');
 $refreshValue = isset($_POST['refresh']) ? $_POST['refresh'] : '4';
 $testValue = isset($_POST['test']) ? $_POST['test'] : '30';
-$nextValue = isset($_REQUEST['next']) ? $_REQUEST['next'] : '28.php';
+$nextValue = isset($_REQUEST['next']) ? $_REQUEST['next'] : 'chat.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
